@@ -24,6 +24,10 @@ function set_night_cam($period,$gain,$hour_lable,$sw){
 		global $ip_adresses;
 		global $cam_gain;
 		foreach ($ip_adresses as $ip_adress) {
+
+			if (!file_exists($ip_adress['file'])){
+				file_put_contents($ip_adress['file'],'');
+			}
 			if (file_get_contents($ip_adress['file']) != $hour_lable){
 //				echo "add";
 				log_cam("-----------------------------------------");
@@ -54,7 +58,7 @@ function set_night_cam($period,$gain,$hour_lable,$sw){
 set_night_cam('711' ,'12','711'   ,'on' ); // 07:11 on gain=12 hour=7
 set_night_cam('900' ,'7' ,'901'   ,'on' ); // 09:00 on gain=7 hour=9
 set_night_cam('1000','1' ,'1040','off'); // 10:40 OFF gain=1 hour=1040
-set_night_cam('1650','10','1630'  ,'on' ); // 16:30 on gain=10 hour=1630
+//set_night_cam('1700','10','1630'  ,'on' ); // 16:30 on gain=10 hour=1630
 //set_night_cam('2008','8','4444','on'); // test
 
 

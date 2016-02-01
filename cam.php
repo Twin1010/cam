@@ -1,6 +1,10 @@
 <?php
 header('Refresh:15;url=./cam.php');
 
+if (!file_exists('st')){
+	file_put_contents('st','');
+}
+
 include "night_cam.php";
 echo tailFile('cam.log');
 ?>
