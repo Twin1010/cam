@@ -15,7 +15,13 @@ $cam_gain = array(
 //	,'2008' => array( 'Samsung' => '7'  , 'HTC' => '2')
                                 );
 
-								
+
+/**
+ * @param $period
+ * @param $gain
+ * @param $hour_lable
+ * @param $sw
+ */
 function set_night_cam($period,$gain,$hour_lable,$sw){
 
 //	 if ((date("Hi") == $period) && (file_get_contents("st") == 'on')){
@@ -28,6 +34,7 @@ function set_night_cam($period,$gain,$hour_lable,$sw){
 			if (!file_exists($ip_adress['file'])){
 				file_put_contents($ip_adress['file'],'');
 			}
+
 			if (file_get_contents($ip_adress['file']) != $hour_lable){
 //				echo "add";
 				log_cam("-----------------------------------------");
@@ -44,6 +51,8 @@ function set_night_cam($period,$gain,$hour_lable,$sw){
 							log_cam("Night: Error sent to {$ip_adress['ip']} port {$ip_adress['port_cam']} [ night_gain = {$gain} ]",'error');
 							// echo date('H:i:s')." - "."Night: Error sent to {$ip_adress['ip']} port {$ip_adress['port_cam']} [ night_gain = {$gain} ]<br>";
 						}
+					} elseif ($sw === 'off'){
+						file_put_contents($ip_adress['file'],$hour_lable);
 					}
 				} else {
 					log_cam("Night: Error sent to {$ip_adress['ip']} port {$ip_adress['port_cam']} [ night_{$sw} ]",'error');
