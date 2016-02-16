@@ -9,10 +9,15 @@ include "ssh_cam.php";
 // /settings/night_vision_gain?set=17  - 17:00
 
 $cam_gain = array(
-    '711'  => array( 'Samsung' => '12' , 'HTC' => '9'),
+	'711'  => array( 'Samsung' => '1' , 'HTC' => '9'),
+	'901'  => array( 'Samsung' => '1'  , 'HTC' => '5'),
+    '1630' => array( 'Samsung' => '1'  , 'HTC' => '2')
+/* #before 16.02 without lamp
+     '711'  => array( 'Samsung' => '12' , 'HTC' => '9'),
     '901'  => array( 'Samsung' => '7'  , 'HTC' => '5'),
     '1630' => array( 'Samsung' => '7'  , 'HTC' => '2')
 //	,'2008' => array( 'Samsung' => '7'  , 'HTC' => '2')
+	*/
                                 );
 
 
