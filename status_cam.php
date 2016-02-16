@@ -2,7 +2,9 @@
 
 include "ssh_cam.php";
 
-header('Refresh:1;url=./cam.php');
+//header('Refresh:1;url=./cam.php');
+header('Location: cam.php');
+
 $file_name='st';
 
 if (isset($_POST['status'])){
@@ -24,5 +26,5 @@ if (isset($_POST['status'])){
 	}
 }
 
-echo file_get_contents($file_name); 
+//echo file_get_contents($file_name); 
 ?>
