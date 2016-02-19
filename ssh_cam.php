@@ -10,15 +10,16 @@ $ip_adresses=array(
 function MyPing($url){
 	$ch = curl_init($url);
 	curl_setopt($ch, CURLOPT_NOBODY, true);
-	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
-	if (curl_exec($ch)) {
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+	$result = curl_exec($ch);
+	curl_close($ch);
+
+	if ($result) {
 		return true;
 	} else {
 		return false;
 	}
-	curl_close($ch);
 
-	
 /* 	
 	$url = "http://".$url;
 	$headd = get_headers($url);
