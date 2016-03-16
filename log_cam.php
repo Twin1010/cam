@@ -2,7 +2,7 @@
 
 
 function tailFile($filepath, $lines = 1) {
-	return trim(implode("", array_slice(file($filepath), -20)));
+	return trim(implode("", array_slice(file($filepath), -30)));
 /* 	$a = file($filepath);
 	print_r ($a); echo "<br>";
 	$b = array_slice($a, -5);
@@ -22,7 +22,7 @@ function log_cam($message, $type='norm'){
 			break;
 		case 'send':
 			$message = date('H:i:s')." - "."<font color='blue'>".$message."</font>"."<br />\n";
-			break;			
+			break;
 		case 'error':
 			$message = date('H:i:s')." - "."<font color='red'>".$message."</font>"."<br />\n";
 			break;
@@ -52,4 +52,3 @@ function log_cam($message){
  */
 
 ?>
-

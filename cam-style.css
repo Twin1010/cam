@@ -1,0 +1,53 @@
+.logg {
+  /*border: 3px solid black;*/
+  width: 50%;
+  float: left;
+}
+.status {
+  /*border: 3px solid black;*/
+
+}
+p.st {
+  margin: 0px;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 15px;
+  /*padding-bottom: 0px;*/
+  /*vertical-align: sub;*/
+  /*border: 1px dashed lightgray;*/
+  /*padding: 0px*/
+}
+/*fff*/
+.btn input[type="submit"]{
+   width: 29%;
+	padding: 30px 10px 30px 10px;
+
+  background-color: #dff0d8;
+  border: 2px solid #cccccc;
+  border-radius: 10px;
+}
+input.off {
+	margin: 10% 15% 10% 5%;
+}
+input.on {
+	margin: 10% 5% 10% 15%;
+}
+.btn input[name="lamp"]{
+  /*border: 3px solid blue;*/
+  /* margin: 5em 2em 1em; */
+  padding: 20px 10px;
+  margin-right: 10px;
+  background-color: #d9edf7;
+  margin-left: 15%;
+}
+/*ffff*/
+.lamp{
+  clear: both;
+}
+.control {
+  width: 40%;
+  float: right;
+  border: 2px dashed #dff0d8;
+  /*border: 3px solid black;*/
+}

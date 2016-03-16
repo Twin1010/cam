@@ -7,18 +7,28 @@ include "ssh_cam.php";
 // /settings/night_vision_gain?set=24  - 7:12
 // /settings/night_vision_gain?set=7  - 9:00
 // /settings/night_vision_gain?set=17  - 17:00
-
-$cam_gain = array(
-	'711'  => array( 'Samsung' => '1' , 'HTC' => '9'),
-	'901'  => array( 'Samsung' => '1'  , 'HTC' => '5'),
-    '1630' => array( 'Samsung' => '1'  , 'HTC' => '2')
+if (file_get_contents('lamp') == 'Да') {
+	$cam_gain = array(
+		'711'  => array( 'Samsung' => '1' , 'HTC' => '9'),
+		'901'  => array( 'Samsung' => '1'  , 'HTC' => '5'),
+		'4444'  => array( 'Samsung' => '1'  , 'HTC' => '5'), //test
+	  '1630' => array( 'Samsung' => '1'  , 'HTC' => '2')
+	);
+} else {
+	$cam_gain = array(
+		'711'  => array( 'Samsung' => '12' , 'HTC' => '9'),
+	  '901'  => array( 'Samsung' => '7'  , 'HTC' => '5'),
+		'4444'  => array( 'Samsung' => '8'  , 'HTC' => '6'), //test
+	  '1630' => array( 'Samsung' => '7'  , 'HTC' => '2')
+ 	);
+}
 /* #before 16.02 without lamp
      '711'  => array( 'Samsung' => '12' , 'HTC' => '9'),
     '901'  => array( 'Samsung' => '7'  , 'HTC' => '5'),
     '1630' => array( 'Samsung' => '7'  , 'HTC' => '2')
 //	,'2008' => array( 'Samsung' => '7'  , 'HTC' => '2')
 	*/
-                                );
+//                                );
 
 
 /**
@@ -27,7 +37,7 @@ $cam_gain = array(
  * @param $hour_lable
  * @param $sw
  */
-function set_night_cam($period,$gain,$hour_lable,$sw){
+function set_night_cam($period, $hour_lable,$sw){
 
 //	 if ((date("Hi") == $period) && (file_get_contents("st") == 'on')){
 	if ((($period <= date('Hi')) && (date('Hi') <= $period+1)) && (file_get_contents("./st") == 'on')){
@@ -42,6 +52,7 @@ function set_night_cam($period,$gain,$hour_lable,$sw){
 
 			if (file_get_contents($ip_adress['file']) != $hour_lable){
 //				echo "add";
+				// echo $cam_gain[$hour_lable][$ip_adress['name']]; //test
 				log_cam("-----------------------------------------");
 				if (ssh_exec($ip_adress['ip'], $ip_adress['port_cam'], "settings/night_vision?set={$sw}")){
 					log_cam("Night: Sent to {$ip_adress['ip']} port {$ip_adress['port_cam']} [ night_{$sw} ]");
@@ -69,12 +80,11 @@ function set_night_cam($period,$gain,$hour_lable,$sw){
 } //end set_night_cam
 
 
-set_night_cam('711' ,'12','711'   ,'on' ); // 07:11 on gain=12 hour=7
-set_night_cam('900' ,'7' ,'901'   ,'on' ); // 09:00 on gain=7 hour=9
-set_night_cam('1000','1' ,'1040','off'); // 10:40 OFF gain=1 hour=1040
+set_night_cam('711' ,'711'   ,'on' ); // 07:11 on gain=12 hour=7
+set_night_cam('900' ,'901'   ,'on' ); // 09:00 on gain=7 hour=9
+set_night_cam('1000','1040'  ,'off'); // 10:40 OFF gain=1 hour=1040
 //set_night_cam('1700','10','1630'  ,'on' ); // 16:30 on gain=10 hour=1630
-//set_night_cam('2008','8','4444','on'); // test
+// set_night_cam('1024','4444','on'); // test
 
 
 ?>
-
