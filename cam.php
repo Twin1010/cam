@@ -46,18 +46,18 @@ $st_lamp = file_get_contents('lamp');
 	</div>
 	<div class="control">
 		<div class="status">
-			<h1 class="h1">
+			<p class="st">
 				<?php
 					$file_name='st';
 					echo file_get_contents($file_name)."\n";
 				?>
-			</h1>
+			</p>
 		</div>
 		<div class="btn">
 			<form action="status_cam.php" method="POST">
-				<input name="status" type="submit" value="on" />
-				<input name="status" type="submit" value="off" /><br />
-				<div class="lamp"><input name="lamp" type="submit" value="<?php echo $st_lamp;?>"/> Лампа включена<br /></div>
+				<input class="on" name="status" type="submit" value="on" />
+				<input class="off" name="status" type="submit" value="off" /><br />
+				<input class="lamp" id="lamp" name="lamp" type="submit" value="<?php echo $st_lamp;?>"/><label for="lamp"> Лампа включена<br /></label>
 			</form>
 	  </div>
 	</div>
