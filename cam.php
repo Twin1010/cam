@@ -1,5 +1,5 @@
 <?php
-header('Refresh:15;url=./cam.php');
+// header('Refresh:15;url=./cam.php');
 
 if (!file_exists('st')){
 	file_put_contents('st','');
@@ -46,18 +46,29 @@ $st_lamp = file_get_contents('lamp');
 	</div>
 	<div class="control">
 		<div class="status">
-			<p class="st">
+			<span class="st">
 				<?php
 					$file_name='st';
 					echo file_get_contents($file_name)."\n";
 				?>
-			</p>
+			</span>
 		</div>
 		<div class="btn">
 			<form action="status_cam.php" method="POST">
-				<input class="on" name="status" type="submit" value="on" />
-				<input class="off" name="status" type="submit" value="off" /><br />
-				<input class="lamp" id="lamp" name="lamp" type="submit" value="<?php echo $st_lamp;?>"/><label for="lamp"> Лампа включена<br /></label>
+				<div class="btn-ctr">
+					<div class="shadow">
+						<input name="status" type="submit" value="on" />
+					</div>
+					<div class="shadow">
+						<input name="status" type="submit" value="off" /><br />
+					</div>
+				</div>
+				<div class="lamp">
+					<div class="shadow">
+						<input id="lamp" name="lamp" type="submit" value="<?php echo $st_lamp;?>"/>
+					</div>
+					<label for="lamp"> Лампа включена<br /></label>
+				</div>
 			</form>
 	  </div>
 	</div>
