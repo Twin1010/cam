@@ -1,5 +1,5 @@
 <?php
-header('Refresh:15;url=./cam.php');
+// header('Refresh:15;url=./cam.php');
 
 if (!file_exists('st')){
 	file_put_contents('st','');
