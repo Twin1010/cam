@@ -25,7 +25,7 @@ if (isset($_POST['status'])){
 
 		foreach ($ip_adresses as $ip_adress) {
 			log_cam("-----------------------------------------");
-			if (ssh_exec($ip_adress['ip'], $ip_adress['port_ssh'], "index.php?status={$st}")){
+			if (ssh_exec($ip_adress['ip'], $ip_adress['port_ssh'], "index.php?status={$st}", 10)){
 				log_cam("Webcam {$ip_adress['ip']} port {$ip_adress['port_ssh']} is [ {$st} ]",'send');
 				// echo date('H:i:s')." - "."Webcam {$ip_adress['ip']} port {$ip_adress['port_ssh']} is [ {$st} ]<br />";
 			} else {

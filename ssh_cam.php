@@ -7,10 +7,10 @@ $ip_adresses=array(
 				array('name' => 'HTC' , 'ip' => '192.168.137.33' , 'port_ssh' => 10922 ,'port_cam' => '10980', 'file' => 'Night109')
 					);
 
-function MyPing($url){
+function MyPing($url, $timeout=5){
 	$ch = curl_init($url);
 	curl_setopt($ch, CURLOPT_NOBODY, true);
-	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
 	$result = curl_exec($ch);
 	curl_close($ch);
 
@@ -20,7 +20,7 @@ function MyPing($url){
 		return false;
 	}
 
-/* 	
+/*
 	$url = "http://".$url;
 	$headd = get_headers($url);
 	if (preg_match("/(.*)200\sOK/",$headd[0],$matches)) {
@@ -29,31 +29,31 @@ function MyPing($url){
 	} else {
 		return false;
 	}
- */	
+ */
 } // end MyPing
-					
-					
-function ssh_exec($ip, $port, $param) {
+
+
+function ssh_exec($ip, $port, $param, $timeout=3) {
 
 // HTTP version
 
 	$url = $ip.":".$port;
 	// Проверка доступности хоста
-	if (MyPing($url)){
+	if (MyPing($url, $timeout)){
 	// Если доступен, то отправляем param через HTTP
 		log_cam("Webcam {$ip} port {$port} is [ On-line ]",'on-line');
 
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, "http://{$ip}:{$port}/{$param}");
 		curl_setopt($ch, CURLOPT_NOBODY, true);
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3); 
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
 	//	$ansver = curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
- 		$res = curl_exec($ch); 
+ 		$res = curl_exec($ch);
 		curl_close($ch);
 //		var_dump($res);
 //		print_r($res);
-		return $res; 
-		
+		return $res;
+
 	} else {
 		log_cam("Webcam {$ip} port {$port} is [ Off-line ]",'off-line');
 		return false;
@@ -63,8 +63,8 @@ function ssh_exec($ip, $port, $param) {
 
 // -- функция ssh_exec с подключение через SSH   - работает, но не нужно
 /* //	echo send_get($ip,$port);
-	// Проверка доступности хоста в Винде или Линуксе. 
-	if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') { 
+	// Проверка доступности хоста в Винде или Линуксе.
+	if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
 		exec ("ping -n 2 -w 200 {$ip}", $output, $status);
 	} else {
 		exec ("ping -c 2 -w 200 {$ip}", $output, $status);
@@ -77,22 +77,22 @@ function ssh_exec($ip, $port, $param) {
 		if ($connection){
 			if (ssh2_auth_password($connection, 'root', 'admin')) {
 				 ssh2_exec($connection, $command);
-				 return true;   
+				 return true;
 			  } else {
-					return false; // Не прошла проверка логина_пароля 
+					return false; // Не прошла проверка логина_пароля
 	//			 die('Public Key Authentication Failed');
 			  }
 		} else {
 			log_cam(date('H:i:s')." - <b>Webcam {$ip} port {$port} is Off-line </b>");
 			//echo "<b>Webcam {$ip} port {$port} is Off-line </b><br />";
 			return false; // Не подключились к серверу
-		}  
-	} 
+		}
+	}
 */
 // end с подключением через SSH
 }
 
 /* foreach ($ip_adresses as $ip_adress) {
 ssh_exec($ip_adress['ip'], $ip_adress['port_ssh'], 'echo "off" > /mnt/sdcard/flagg');
-} 
+}
 */
