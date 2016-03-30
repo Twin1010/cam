@@ -1,0 +1,58 @@
+.logg {
+  /*border: 3px solid black;*/
+  width: 50%;
+  float: left;
+}
+.status {
+  /*border: 3px solid black;*/
+  text-align: center;
+  padding: 20px;
+}
+span.st {
+  margin: 0px;
+  font-weight: bold;
+  font-size: 2em;
+  text-align: center;
+}
+input[type="submit"]{
+  width: 100%;
+  background-color: #dff0d8;
+  border: 2px solid #cccccc;
+  border-radius: 10px;
+  line-height: 90px;
+}
+input:hover {
+  position: relative;
+  left: 2px;
+  bottom: 2px;
+}
+input[name="lamp"]{
+  background-color: #d9edf7;
+  line-height: 50px;
+}
+.lamp{
+  /*clear: both;*/
+  width: 65%;
+  margin: 30px auto;
+}
+.control {
+  width: 40%;
+  float: right;
+  border: 2px dashed #dff0d8;
+  /*border: 3px solid black;*/
+}
+form {
+  width: 90%;
+  margin: 0px auto;
+}
+.btn-ctr {
+  margin: 0px auto;
+  width: 65%;
+}
+.shadow {
+  display: inline-block;
+  background-color: lightgray;
+  border-radius: 10px;
+  width: 47%;
+  margin: 0px 3px;
+}

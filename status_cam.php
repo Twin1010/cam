@@ -7,12 +7,22 @@ header('Location: cam.php');
 
 $file_name='st';
 
+if (isset($_POST['lamp'])) {
+	$st=$_POST['lamp'];
+
+	if ($st == 'Нет'){
+		file_put_contents('lamp','Да');
+	} else {
+		file_put_contents('lamp','Нет');
+	}
+}
+
 if (isset($_POST['status'])){
 	$st=$_POST['status'];
-	
+
 	if (($st == "off") || ($st == "on")) {
 		file_put_contents($file_name, $st);
-			
+
 		foreach ($ip_adresses as $ip_adress) {
 			log_cam("-----------------------------------------");
 			if (ssh_exec($ip_adress['ip'], $ip_adress['port_ssh'], "index.php?status={$st}")){
@@ -26,5 +36,5 @@ if (isset($_POST['status'])){
 	}
 }
 
-//echo file_get_contents($file_name); 
+//echo file_get_contents($file_name);
 ?>
